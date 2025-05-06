@@ -1,13 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Ambilatent Space Controller</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <p id="switch">ON&nbsp;&nbsp;|&nbsp;&nbsp;OFF</p>
+      <div id="control-panel">
+        <div id="control-inner-wrap">
+          <div class="inner-panel" id="left-panel">
+            <h1>Mode 1</h1>
+            <label for="temperature">temperature</label>
+            <br />
+            <div class="slider-container">
+              <input
+                type="range"
+                id="temperature"
+                name="temperature"
+                min="0"
+                max="255"
+                value="0"
+                class="slider"
+              />
+              <span>255</span>
+            </div>
+            <br />
+            <label>brightness</label>
+          </div>
+          <div id="divide-line"></div>
+          <div class="inner-panel" id="right-panel">
+            <h1>Mode 2</h1>
+            <p>rgb</p>
+            <p>brightness</p>
+          </div>
+        </div>
+      </div>
+      <div id="name"></div>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
