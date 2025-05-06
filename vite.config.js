@@ -1,7 +1,14 @@
-/** @type {import('vite').UserConfig} */
+import { resolve } from "path"
+import { defineConfig } from "vite"
 
-export default {
-  build: {
-    outDir: "./docs",
+export default defineConfig({
+  server: {
+    port: 5173,
   },
-}
+  root: resolve(__dirname, "src"),
+  publicDir: resolve(__dirname, "public"),
+  base: "/ambilatent/",
+  build: {
+    outDir: "../docs",
+  },
+})
