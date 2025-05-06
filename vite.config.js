@@ -7,7 +7,7 @@ export default defineConfig({
   },
   root: resolve(__dirname, "src"),
   publicDir: resolve(__dirname, "public"),
-  base: "/ambilatent/",
+  base: "/ambilatent-space-client/",
   build: {
     outDir: "../docs",
   },
