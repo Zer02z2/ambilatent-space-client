@@ -9,7 +9,11 @@
   </head>
   <body>
     <div id="app">
-      <p id="switch">ON&nbsp;&nbsp;|&nbsp;&nbsp;OFF</p>
+      <p id="switch">
+        <span id="switch-on" class="switch-option active">ON</span>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <span id="switch-off" class="switch-option">OFF</span>
+      </p>
       <div id="control-panel">
         <div id="control-inner-wrap">
           <div class="inner-panel" id="left-panel">
@@ -64,7 +68,7 @@
               />
               <span data="brightness2">255</span>
             </div>
-            <div class="send" id="send1">
+            <div class="send" id="send2">
               <div class="triangle-right"></div>
               <p>send</p>
             </div>
@@ -73,15 +77,16 @@
       </div>
       <div id="bottom-row">
         <div id="tabs">
-          <div class="tab"><h1>Preset 1</h1></div>
-          <div class="tab"><h1>Preset 2</h1></div>
-          <div class="tab"><h1>Preset 3</h1></div>
+          <div class="tab" data-mode="preset1"><h1>Preset 1</h1></div>
+          <div class="tab" data-mode="preset2"><h1>Preset 2</h1></div>
+          <div class="tab" data-mode="preset3"><h1>Preset 3</h1></div>
         </div>
         <div id="name">
           <p>Ambi(latent) Space</p>
         </div>
       </div>
     </div>
+    <div id="global-fetch-notification" class="fetch-notification"></div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

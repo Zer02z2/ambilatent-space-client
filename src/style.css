@@ -93,6 +93,15 @@ body {
 #tabs {
   display: flex;
 }
+/* Add to your existing CSS */
+.switch-option {
+  cursor: pointer;
+  padding: 0;
+  padding-bottom: 1rem;
+}
+.switch-option:hover {
+  text-decoration: underline;
+}
 .tab {
   min-width: 12rem;
   min-height: 6rem;
@@ -101,6 +110,15 @@ body {
   border: solid 1px rgb(176, 176, 176);
   border-top: 0px;
   border-radius: 0 0 16px 16px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s; /* Smooth transition */
+}
+.tab.active {
+  background-color: white;
+  color: black;
+  border: 1px solid black; /* Optional: to define boundary when white */
 }
 .tab h1 {
   padding: 0;
@@ -115,6 +133,10 @@ body {
   display: flex;
   gap: 0.6rem;
 }
+.send p:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
 .send p {
   font-weight: 500;
 }
@@ -124,4 +146,45 @@ body {
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
   border-left: 15px solid rgb(230, 230, 230);
+}
+/* Notification Styling */
+.fetch-notification {
+  position: fixed; /* Fixed position relative to the viewport */
+  left: 50%; /* Center horizontally */
+  top: 20px; /* Distance from the top */
+  transform: translate(
+    -50%,
+    -150%
+  ); /* Initial position: centered and above screen */
+  padding: 12px 25px;
+  border-radius: 0px;
+  color: rgb(6, 6, 6);
+  font-size: 0.95em;
+  font-weight: 500;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 10000; /* Ensure it's on top of other content */
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    opacity 0.3s ease-out;
+  /* cubic-bezier for a slight "bounce" or "overshoot" effect when appearing */
+  min-width: 2rem; /* Minimum width */
+  max-width: 5rem; /* Maximum width to prevent it from being too wide on small screens */
+  box-sizing: border-box;
+  pointer-events: none; /* Allow clicks to pass through if needed, usually not for notifications */
+}
+
+.fetch-notification.show {
+  transform: translate(-50%, 0); /* Target position: centered and at top:20px */
+  opacity: 1;
+}
+
+.fetch-notification.success {
+  color: rgb(6, 6, 6);
+  background-color: #f7f7f7; /* A pleasant green */
+}
+
+.fetch-notification.error {
+  color: rgb(235, 235, 235);
+  background-color: #ff3347; /* A common red for errors */
 }
