@@ -30,7 +30,6 @@ function HSVtoRGB(h, s, v) {
   currentR = Math.round(f(5) * 255)
   currentG = Math.round(f(3) * 255)
   currentB = Math.round(f(1) * 255)
-  // Note: No return needed if only updating module state
 }
 
 function RGBtoHSV(r, g, b) {
@@ -46,7 +45,6 @@ function RGBtoHSV(r, g, b) {
   } // Keep old hue for grayscale
   currentSat = Math.round((v && c / v) * 100)
   currentVal = Math.round(v * 100)
-  // Note: No return needed
 }
 
 // --- Private Update Functions ---
@@ -199,17 +197,29 @@ export function init(targetElementId) {
   hueCursor = document.createElement("div")
   const controlsContainer = document.createElement("div")
   previewBox = document.createElement("div")
-  const rgbFields = document.createElement("div")
-  const rLabel = document.createElement("label")
+  const rgbFields = document.createElement("div") // This will hold the R, G, B rows
+  const rLabelElement = document.createElement("label") // Using more specific names for clarity
   rInput = document.createElement("input")
-  const gLabel = document.createElement("label")
+  const gLabelElement = document.createElement("label")
   gInput = document.createElement("input")
-  const bLabel = document.createElement("label")
+  const bLabelElement = document.createElement("label")
   bInput = document.createElement("input")
+
+  // Define fixed widths for consistent layout
+  const LABEL_TEXT_PART_WIDTH = "20px" // For "R:", "G:", "B:" text part
+  const INPUT_FIELD_PART_WIDTH = "45px"
+  const ROW_GAP = "5px" // Gap between text and input within a row
+  // Calculate total width for one R/G/B row. Add 1px for potential subpixel rendering or minor inconsistencies.
+  const RGB_ROW_TOTAL_WIDTH =
+    parseFloat(LABEL_TEXT_PART_WIDTH) +
+    parseFloat(ROW_GAP) +
+    parseFloat(INPUT_FIELD_PART_WIDTH) +
+    1 +
+    "px"
 
   // Apply Styles (Original Layout)
   pickerContainer.style.display = "flex"
-  pickerContainer.style.width = "100%"
+  pickerContainer.style.width = "100%" // Let parent determine overall width
   const satValSize = 150
   satValBox.style.width = `${satValSize}px`
   satValBox.style.height = `${satValSize}px`
@@ -243,47 +253,72 @@ export function init(targetElementId) {
   hueCursor.style.boxSizing = "border-box"
   hueCursor.style.pointerEvents = "none"
   hueCursor.style.transform = "translateY(-50%)"
+
   controlsContainer.style.marginLeft = "10px"
   controlsContainer.style.display = "flex"
   controlsContainer.style.flexDirection = "column"
-  controlsContainer.style.justifyContent = "center"
-  previewBox.style.width = "40px"
-  previewBox.style.height = "40px"
+  //controlsContainer.style.justifyContent = "center" // Vertically centers preview and rgbFields group
+  controlsContainer.style.alignItems = "center" // This will center the rgbFields container and previewBox
+
+  previewBox.style.width = RGB_ROW_TOTAL_WIDTH // MODIFIED: Same width as RGB rows container
+  previewBox.style.height = "30px" // Adjusted height
   previewBox.style.border = "1px solid #ccc"
   previewBox.style.marginBottom = "10px"
-  previewBox.style.alignSelf = "center"
+  // previewBox.style.alignSelf = "center"; // Handled by controlsContainer.alignItems
+
   rgbFields.style.display = "flex"
   rgbFields.style.flexDirection = "column"
-  rgbFields.style.gap = "4px"
-  rgbFields.style.alignItems = "center"
-  const setupInput = (input, label, labelText) => {
-    input.type = "number"
-    input.min = "0"
-    input.max = "255"
-    input.style.width = "45px"
-    input.style.padding = "3px"
-    input.style.border = "1px solid #ccc"
-    input.style.fontSize = "0.8em"
-    input.style.textAlign = "right"
-    label.textContent = labelText
-    label.style.display = "flex"
-    label.style.alignItems = "center"
-    label.style.fontSize = "0.85em"
-    label.style.gap = "5px"
-    label.appendChild(input)
+  rgbFields.style.gap = "4px" // Gap between R, G, B rows
+  rgbFields.style.width = RGB_ROW_TOTAL_WIDTH // MODIFIED: rgbFields container has fixed width
+
+  const setupInputRow = (inputField, labelContainer, labelTextString) => {
+    // labelContainer is the <label> element acting as a row container
+    labelContainer.style.display = "flex"
+    labelContainer.style.alignItems = "center"
+    labelContainer.style.gap = ROW_GAP // Gap between text span and input
+    // labelContainer.style.width = "100%"; // Let it take full width of rgbFields container
+    // No need to set width on labelContainer if rgbFields has a fixed width
+    // and labelContainer is a direct child.
+
+    const textSpan = document.createElement("span")
+    textSpan.textContent = labelTextString
+    textSpan.style.display = "inline-block"
+    textSpan.style.width = LABEL_TEXT_PART_WIDTH
+    textSpan.style.textAlign = "left"
+    textSpan.style.fontSize = "0.85em"
+    textSpan.style.flexShrink = "0" // Prevent text from shrinking
+
+    inputField.type = "number"
+    inputField.min = "0"
+    inputField.max = "255"
+    inputField.style.width = INPUT_FIELD_PART_WIDTH
+    inputField.style.padding = "3px"
+    inputField.style.border = "1px solid #ccc"
+    inputField.style.fontSize = "0.8em"
+    inputField.style.textAlign = "right"
+    inputField.style.boxSizing = "border-box" // Important for width calculation
+    // inputField.style.flexGrow = "1"; // Not needed if both parts have fixed width and sum up to parent
+
+    labelContainer.appendChild(textSpan)
+    labelContainer.appendChild(inputField)
   }
-  setupInput(rInput, rLabel, "R:")
-  setupInput(gInput, gLabel, "G:")
-  setupInput(bInput, bLabel, "B:")
+
+  setupInputRow(rInput, rLabelElement, "R:")
+  setupInputRow(gInput, gLabelElement, "G:")
+  setupInputRow(bInput, bLabelElement, "B:")
 
   // Append Elements
   satValBox.appendChild(satValCursor)
   hueSlider.appendChild(hueCursor)
-  rgbFields.appendChild(rLabel)
-  rgbFields.appendChild(gLabel)
-  rgbFields.appendChild(bLabel)
+
+  // rLabelElement, gLabelElement, bLabelElement are now the styled rows
+  rgbFields.appendChild(rLabelElement)
+  rgbFields.appendChild(gLabelElement)
+  rgbFields.appendChild(bLabelElement)
+
   controlsContainer.appendChild(previewBox)
   controlsContainer.appendChild(rgbFields)
+
   pickerContainer.appendChild(satValBox)
   pickerContainer.appendChild(hueSlider)
   pickerContainer.appendChild(controlsContainer)

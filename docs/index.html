@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ambilatent Space Controller</title>
+    <script type="module" crossorigin src="/assets/index-BKu554H3.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Dyr6A_k2.css">
+  </head>
+  <body>
+    <div id="app">
+      <p id="switch">
+        <span id="switch-on" class="switch-option active">ON</span>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <span id="switch-off" class="switch-option">OFF</span>
+      </p>
+      <div id="control-panel">
+        <div id="control-inner-wrap">
+          <div class="inner-panel" id="left-panel">
+            <h1>Mode 1</h1>
+            <label class="label" for="temperature">temperature</label>
+            <div class="slider-container">
+              <input
+                type="range"
+                id="temperature"
+                name="temperature"
+                min="0"
+                max="255"
+                value="0"
+                class="slider"
+              />
+              <span data="temperature">255</span>
+            </div>
+            <label class="label" for="brightness">brightness</label>
+
+            <div class="slider-container">
+              <input
+                type="range"
+                id="brightness"
+                name="temperature"
+                min="0"
+                max="255"
+                value="0"
+                class="slider"
+              />
+              <span data="brightness">255</span>
+            </div>
+            <div class="send" id="send1">
+              <div class="triangle-right"></div>
+              <p>send</p>
+            </div>
+          </div>
+          <div id="divide-line"></div>
+          <div class="inner-panel" id="right-panel">
+            <h1>Mode 2</h1>
+            <label class="label">rgb</label>
+            <div id="rgb-picker"></div>
+            <label class="label" for="brightness2">brightness</label>
+            <div class="slider-container">
+              <input
+                type="range"
+                id="brightness2"
+                name="temperature"
+                min="0"
+                max="255"
+                value="0"
+                class="slider"
+              />
+              <span data="brightness2">255</span>
+            </div>
+            <div class="send" id="send2">
+              <div class="triangle-right"></div>
+              <p>send</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="bottom-row">
+        <div id="tabs">
+          <div class="tab" data-mode="preset1"><h1>Preset 1</h1></div>
+          <div class="tab" data-mode="preset2"><h1>Preset 2</h1></div>
+          <div class="tab" data-mode="preset3"><h1>Preset 3</h1></div>
+        </div>
+        <div id="name">
+          <p>Ambi(latent) Space</p>
+        </div>
+      </div>
+    </div>
+    <div id="global-fetch-notification" class="fetch-notification"></div>
+  </body>
+</html>

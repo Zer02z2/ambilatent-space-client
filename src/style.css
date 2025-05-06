@@ -188,3 +188,6 @@ body {
   color: rgb(235, 235, 235);
   background-color: #ff3347; /* A common red for errors */
 }
+#rgb-picker {
+  margin-bottom: 2rem;
+}
