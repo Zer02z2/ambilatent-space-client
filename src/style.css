@@ -1,7 +1,6 @@
 * {
   box-sizing: border-box;
 }
-
 html,
 body {
   font-family: sans-serif;
@@ -10,33 +9,28 @@ body {
   margin: 0;
   padding: 0;
 }
-
 p {
   font-weight: 100;
   padding: 0;
   margin: 0;
 }
-
 label {
   font-weight: 100;
   padding: 0;
   margin: 0;
 }
-
 h1 {
   padding: 0 0 2rem 0;
   margin: 0;
   font-weight: 100;
   font-size: 1.6rem;
 }
-
 body {
   padding: 6rem;
   height: 100vh;
 }
-
 #switch {
-  padding: 0 0 0.4rem 0;
+  padding: 0 0 0.5rem 0;
   font-size: 1rem;
   font-weight: 100;
 }
@@ -45,28 +39,23 @@ body {
   display: flex;
   flex-direction: column;
 }
-
 #control-panel {
   border: solid 1px rgb(176, 176, 176);
   flex: 1;
   padding: 1rem 0rem;
 }
-
 #control-inner-wrap {
   display: flex;
   height: 100%;
 }
-
 #divide-line {
   flex: 0;
   border-left: solid 1px rgb(176, 176, 176);
 }
-
 .inner-panel {
   flex: 1;
   padding: 0rem 1rem;
 }
-
 .slider {
   -webkit-appearance: none;
   width: 20rem;
@@ -74,7 +63,6 @@ body {
   height: 1px;
   background-color: rgb(212, 212, 212);
 }
-
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   /* transform: translateY(-20px); */
@@ -85,10 +73,55 @@ body {
   background-color: #0b0b0b;
   cursor: pointer;
 }
-
+.slider::-webkit-slider-thumb:active {
+  border: solid 1px #0b0b0b;
+  background-color: rgb(212, 212, 212);
+}
 .slider-container {
-  padding: 1rem 0 2rem 0;
+  padding: 0 0 2rem 0;
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+.label {
+  display: block;
+  padding-bottom: 1rem;
+}
+#bottom-row {
+  display: flex;
+}
+#tabs {
+  display: flex;
+}
+.tab {
+  min-width: 12rem;
+  min-height: 6rem;
+  display: grid;
+  place-items: center;
+  border: solid 1px rgb(176, 176, 176);
+  border-top: 0px;
+  border-radius: 0 0 16px 16px;
+}
+.tab h1 {
+  padding: 0;
+}
+#name {
+  padding-top: 0.5rem;
+  flex: 1;
+  text-align: right;
+}
+.send {
+  padding-top: 2rem;
+  display: flex;
+  gap: 0.6rem;
+}
+.send p {
+  font-weight: 500;
+}
+.triangle-right {
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 15px solid rgb(230, 230, 230);
 }

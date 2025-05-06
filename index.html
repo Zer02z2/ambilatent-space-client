@@ -14,8 +14,7 @@
         <div id="control-inner-wrap">
           <div class="inner-panel" id="left-panel">
             <h1>Mode 1</h1>
-            <label for="temperature">temperature</label>
-            <br />
+            <label class="label" for="temperature">temperature</label>
             <div class="slider-container">
               <input
                 type="range"
@@ -26,20 +25,62 @@
                 value="0"
                 class="slider"
               />
-              <span>255</span>
+              <span data="temperature">255</span>
             </div>
-            <br />
-            <label>brightness</label>
+            <label class="label" for="brightness">brightness</label>
+
+            <div class="slider-container">
+              <input
+                type="range"
+                id="brightness"
+                name="temperature"
+                min="0"
+                max="255"
+                value="0"
+                class="slider"
+              />
+              <span data="brightness">255</span>
+            </div>
+            <div class="send" id="send1">
+              <div class="triangle-right"></div>
+              <p>send</p>
+            </div>
           </div>
           <div id="divide-line"></div>
           <div class="inner-panel" id="right-panel">
             <h1>Mode 2</h1>
-            <p>rgb</p>
-            <p>brightness</p>
+            <label class="label">rgb</label>
+            <div id="rgb-picker"></div>
+            <label class="label" for="brightness2">brightness</label>
+            <div class="slider-container">
+              <input
+                type="range"
+                id="brightness2"
+                name="temperature"
+                min="0"
+                max="255"
+                value="0"
+                class="slider"
+              />
+              <span data="brightness2">255</span>
+            </div>
+            <div class="send" id="send1">
+              <div class="triangle-right"></div>
+              <p>send</p>
+            </div>
           </div>
         </div>
       </div>
-      <div id="name"></div>
+      <div id="bottom-row">
+        <div id="tabs">
+          <div class="tab"><h1>Preset 1</h1></div>
+          <div class="tab"><h1>Preset 2</h1></div>
+          <div class="tab"><h1>Preset 3</h1></div>
+        </div>
+        <div id="name">
+          <p>Ambi(latent) Space</p>
+        </div>
+      </div>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
